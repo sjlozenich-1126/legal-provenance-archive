@@ -879,7 +879,7 @@ export default function Page() {
   const triggerPrintProtocol = () => window.print();
 
   // ─── STYLES ───────────────────────────────────────────────────────────────
-  const s: Record<string, React.CSSProperties | ((arg: any) => React.CSSProperties)> = {
+  const s = {
     shell: { display: 'flex', flexDirection: 'column', minHeight: '100vh', fontFamily: '"Arimo", sans-serif', background: '#F7F7F6', color: '#111' },
     topbar: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 24px', height: '52px', background: '#FFF', borderBottom: '1px solid #EBEBEB', position: 'sticky', top: 0, zIndex: 10 },
     logoGroup: { display: 'flex', alignItems: 'center', gap: '12px' },
@@ -904,7 +904,7 @@ export default function Page() {
     iconBtn: (color?: string) => ({ background: 'none', border: 'none', cursor: 'pointer', color: color || '#888', padding: '4px', borderRadius: '4px', fontSize: '12px', fontFamily: 'inherit' }),
     filterBar: { display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap' as const, background: '#FFF', padding: '12px 16px', borderRadius: '8px', border: '1px solid #EBEBEB' },
     briefingPaper: { background: '#FFF', border: '1px solid #D1D5DB', padding: '50px', borderRadius: '4px', width: '100%', maxWidth: '850px', margin: '0 auto', boxSizing: 'border-box', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)' },
-  };
+  } satisfies Record<string, React.CSSProperties | ((arg: any) => React.CSSProperties)>;
 
   const SortToggle = ({ col, label }: { col: typeof vaultSortBy; label: string }) => (
     <button
