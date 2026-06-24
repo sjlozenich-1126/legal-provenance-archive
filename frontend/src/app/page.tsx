@@ -904,16 +904,27 @@ export default function Page() {
     iconBtn: (color?: string) => ({ background: 'none', border: 'none', cursor: 'pointer', color: color || '#888', padding: '4px', borderRadius: '4px', fontSize: '12px', fontFamily: 'inherit' }),
     filterBar: { display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap' as const, background: '#FFF', padding: '12px 16px', borderRadius: '8px', border: '1px solid #EBEBEB' },
     briefingPaper: { background: '#FFF', border: '1px solid #D1D5DB', padding: '50px', borderRadius: '4px', width: '100%', maxWidth: '850px', margin: '0 auto', boxSizing: 'border-box', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)' },
-  } satisfies Record<string, React.CSSProperties | ((arg: any) => React.CSSProperties)>;
+  } const s = {
+  shell: { display: 'flex', flexDirection: 'column' },
+  // all your other styles...
+  iconBtn: (color?: string) => ({
+    background: 'none',
+    border: 'none',
+    cursor: 'pointer',
+    color: color || '#888',
+  }),
+} satisfies Record<string, React.CSSProperties | ((arg: any) => React.CSSProperties)>;
 
-  const SortToggle = ({ col, label }: { col: typeof vaultSortBy; label: string }) => (
-    <button
-      style={{ background: vaultSortBy === col ? BLUE_LIGHT : 'none', color: vaultSortBy === col ? BLUE : '#666', border: 'none', cursor: 'pointer', fontSize: '11px', padding: '3px 7px', borderRadius: '4px', fontFamily: 'inherit' }}
-      onClick={() => { if (vaultSortBy === col) setVaultSortDir(d => d === 'asc' ? 'desc' : 'asc'); else { setVaultSortBy(col); setVaultSortDir('desc'); } }}
-    >
-      {label}{vaultSortBy === col ? (vaultSortDir === 'desc' ? ' ↓' : ' ↑') : ''}
-    </button>
-  );
+  function SortToggle({ col, label }: { col: typeof vaultSortBy; label: string; }) {
+    return (
+      <button
+        style={{ background: vaultSortBy === col ? BLUE_LIGHT : 'none', color: vaultSortBy === col ? BLUE : '#666', border: 'none', cursor: 'pointer', fontSize: '11px', padding: '3px 7px', borderRadius: '4px', fontFamily: 'inherit' }}
+        onClick={() => { if (vaultSortBy === col) setVaultSortDir(d => d === 'asc' ? 'desc' : 'asc'); else { setVaultSortBy(col); setVaultSortDir('desc'); } } }
+      >
+        {label}{vaultSortBy === col ? (vaultSortDir === 'desc' ? ' ↓' : ' ↑') : ''}
+      </button>
+    );
+  }
 
   const PriorityBadge = ({ p }: { p: string }) => (
     <span style={{ fontSize: '10px', fontWeight: 700, padding: '2px 6px', borderRadius: '4px', color: '#FFF', background: PRIORITY_COLORS[p] || GRAY }}>{p}</span>
