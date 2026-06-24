@@ -878,57 +878,54 @@ export default function Page() {
 
   const triggerPrintProtocol = () => window.print();
 
-  // ─── STYLES ───────────────────────────────────────────────────────────────
-  const s = {
-    shell: { display: 'flex', flexDirection: 'column', minHeight: '100vh', fontFamily: '"Arimo", sans-serif', background: '#F7F7F6', color: '#111' },
-    topbar: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 24px', height: '52px', background: '#FFF', borderBottom: '1px solid #EBEBEB', position: 'sticky', top: 0, zIndex: 10 },
-    logoGroup: { display: 'flex', alignItems: 'center', gap: '12px' },
-    logoAnchor: { display: 'flex', alignItems: 'center', gap: '10px', background: 'none', border: 'none', cursor: 'pointer', padding: 0, textAlign: 'left', fontFamily: 'inherit', color: 'inherit' },
-    logoText: { fontSize: '13px', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' },
-    tabGroup: { display: 'flex', gap: '4px', marginLeft: '24px' },
-    tabBtn: (active: boolean) => ({ padding: '6px 12px', fontSize: '12px', border: 'none', background: active ? BLUE_LIGHT : 'transparent', color: active ? BLUE : '#666', borderRadius: '4px', cursor: 'pointer', fontWeight: active ? 600 : 400, fontFamily: '"Arimo", sans-serif' }),
-    body: { display: 'flex', flex: 1, minHeight: 0 },
-    sidebar: { width: '260px', background: '#FFF', borderRight: '1px solid #EBEBEB', padding: '20px 0', display: 'flex', flexDirection: 'column', flexShrink: 0, overflowY: 'auto' },
-    sideSection: { padding: '0 14px', marginBottom: '20px' } as React.CSSProperties,
-    sideLabel: { fontSize: '10px', fontWeight: 600, color: '#AAA', letterSpacing: '0.09em', textTransform: 'uppercase', marginBottom: '8px', display: 'block' },
-    navBtn: (active: boolean) => ({ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', padding: '6px 8px', borderRadius: '6px', border: 'none', background: active ? '#F3F3F1' : 'transparent', color: active ? '#111' : '#666', cursor: 'pointer', fontSize: '12px', textAlign: 'left', fontFamily: '"Arimo", sans-serif' }),
-    main: { flex: 1, display: 'flex', minWidth: 0, background: '#F7F7F6' },
-    feed: { flex: 1, padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px', overflowY: 'auto' },
-    viewer: { width: '420px', borderLeft: '1px solid #EBEBEB', background: '#FFF', display: 'flex', flexDirection: 'column', flexShrink: 0 },
-    formLabel: { fontSize: '10px', fontWeight: 600, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: '4px', letterSpacing: '0.05em' },
-    formInput: { width: '100%', padding: '8px 10px', border: '1px solid #E8E8E8', borderRadius: '6px', background: '#F9F9F9', fontSize: '12px', outline: 'none', fontFamily: '"Arimo", sans-serif', boxSizing: 'border-box' } as React.CSSProperties,
-    formSelect: { width: '100%', padding: '8px 10px', border: '1px solid #E8E8E8', borderRadius: '6px', background: '#F9F9F9', fontSize: '12px', fontFamily: '"Arimo", sans-serif', boxSizing: 'border-box' } as React.CSSProperties,
-    modalOverlay: { position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100 },
-    modalContent: { background: '#FFF', borderRadius: '8px', padding: '24px', width: '460px', maxHeight: '90vh', overflowY: 'auto' },
-    tag: (color?: string) => ({ background: color ? `${color}18` : BLUE_LIGHT, color: color || BLUE_TEXT, padding: '2px 7px', borderRadius: '12px', fontSize: '10px', fontWeight: 600, letterSpacing: '0.04em', display: 'inline-block', margin: '2px' }),
-    iconBtn: (color?: string) => ({ background: 'none', border: 'none', cursor: 'pointer', color: color || '#888', padding: '4px', borderRadius: '4px', fontSize: '12px', fontFamily: 'inherit' }),
-    filterBar: { display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap' as const, background: '#FFF', padding: '12px 16px', borderRadius: '8px', border: '1px solid #EBEBEB' },
-    briefingPaper: { background: '#FFF', border: '1px solid #D1D5DB', padding: '50px', borderRadius: '4px', width: '100%', maxWidth: '850px', margin: '0 auto', boxSizing: 'border-box', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)' },
-  } const s = {
-  shell: { display: 'flex', flexDirection: 'column' },
-  // all your other styles...
-  iconBtn: (color?: string) => ({
-    background: 'none',
-    border: 'none',
-    cursor: 'pointer',
-    color: color || '#888',
-  }),
+ // ─── STYLES ───────────────────────────────────────────────────────────────
+const s = {
+  shell: { display: 'flex', flexDirection: 'column', minHeight: '100vh', fontFamily: '"Arimo", sans-serif', background: '#F7F7F6', color: '#111' },
+  topbar: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 24px', height: '52px', background: '#FFF', borderBottom: '1px solid #EBEBEB', position: 'sticky', top: 0, zIndex: 10 },
+  logoGroup: { display: 'flex', alignItems: 'center', gap: '12px' },
+  logoAnchor: { display: 'flex', alignItems: 'center', gap: '10px', background: 'none', border: 'none', cursor: 'pointer', padding: 0, textAlign: 'left', fontFamily: 'inherit', color: 'inherit' },
+  logoText: { fontSize: '13px', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' },
+  tabGroup: { display: 'flex', gap: '4px', marginLeft: '24px' },
+  tabBtn: (active: boolean) => ({ padding: '6px 12px', fontSize: '12px', border: 'none', background: active ? BLUE_LIGHT : 'transparent', color: active ? BLUE : '#666', borderRadius: '4px', cursor: 'pointer', fontWeight: active ? 600 : 400, fontFamily: '"Arimo", sans-serif' }),
+  body: { display: 'flex', flex: 1, minHeight: 0 },
+  sidebar: { width: '260px', background: '#FFF', borderRight: '1px solid #EBEBEB', padding: '20px 0', display: 'flex', flexDirection: 'column', flexShrink: 0, overflowY: 'auto' },
+  sideSection: { padding: '0 14px', marginBottom: '20px' },
+  sideLabel: { fontSize: '10px', fontWeight: 600, color: '#AAA', letterSpacing: '0.09em', textTransform: 'uppercase', marginBottom: '8px', display: 'block' },
+  navBtn: (active: boolean) => ({ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', padding: '6px 8px', borderRadius: '6px', border: 'none', background: active ? '#F3F3F1' : 'transparent', color: active ? '#111' : '#666', cursor: 'pointer', fontSize: '12px', textAlign: 'left', fontFamily: '"Arimo", sans-serif' }),
+  main: { flex: 1, display: 'flex', minWidth: 0, background: '#F7F7F6' },
+  feed: { flex: 1, padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px', overflowY: 'auto' },
+  viewer: { width: '420px', borderLeft: '1px solid #EBEBEB', background: '#FFF', display: 'flex', flexDirection: 'column', flexShrink: 0 },
+  formLabel: { fontSize: '10px', fontWeight: 600, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: '4px', letterSpacing: '0.05em' },
+  formInput: { width: '100%', padding: '8px 10px', border: '1px solid #E8E8E8', borderRadius: '6px', background: '#F9F9F9', fontSize: '12px', outline: 'none', fontFamily: '"Arimo", sans-serif', boxSizing: 'border-box' },
+  formSelect: { width: '100%', padding: '8px 10px', border: '1px solid #E8E8E8', borderRadius: '6px', background: '#F9F9F9', fontSize: '12px', fontFamily: '"Arimo", sans-serif', boxSizing: 'border-box' },
+  modalOverlay: { position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100 },
+  modalContent: { background: '#FFF', borderRadius: '8px', padding: '24px', width: '460px', maxHeight: '90vh', overflowY: 'auto' },
+  tag: (color?: string) => ({ background: color ? `${color}18` : BLUE_LIGHT, color: color || BLUE_TEXT, padding: '2px 7px', borderRadius: '12px', fontSize: '10px', fontWeight: 600, letterSpacing: '0.04em', display: 'inline-block', margin: '2px' }),
+  iconBtn: (color?: string) => ({ background: 'none', border: 'none', cursor: 'pointer', color: color || '#888', padding: '4px', borderRadius: '4px', fontSize: '12px', fontFamily: 'inherit' }),
+  filterBar: { display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap' as const, background: '#FFF', padding: '12px 16px', borderRadius: '8px', border: '1px solid #EBEBEB' },
+  briefingPaper: { background: '#FFF', border: '1px solid #D1D5DB', padding: '50px', borderRadius: '4px', width: '100%', maxWidth: '850px', margin: '0 auto', boxSizing: 'border-box', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)' },
 } satisfies Record<string, React.CSSProperties | ((arg: any) => React.CSSProperties)>;
 
-  function SortToggle({ col, label }: { col: typeof vaultSortBy; label: string; }) {
-    return (
-      <button
-        style={{ background: vaultSortBy === col ? BLUE_LIGHT : 'none', color: vaultSortBy === col ? BLUE : '#666', border: 'none', cursor: 'pointer', fontSize: '11px', padding: '3px 7px', borderRadius: '4px', fontFamily: 'inherit' }}
-        onClick={() => { if (vaultSortBy === col) setVaultSortDir(d => d === 'asc' ? 'desc' : 'asc'); else { setVaultSortBy(col); setVaultSortDir('desc'); } } }
-      >
-        {label}{vaultSortBy === col ? (vaultSortDir === 'desc' ? ' ↓' : ' ↑') : ''}
-      </button>
-    );
-  }
+const SortToggle = ({ col, label }: { col: typeof vaultSortBy; label: string }) => (
+  <button
+    style={{ background: vaultSortBy === col ? BLUE_LIGHT : 'none', color: vaultSortBy === col ? BLUE : '#666', border: 'none', cursor: 'pointer', fontSize: '11px', padding: '3px 7px', borderRadius: '4px', fontFamily: 'inherit' }}
+    onClick={() => {
+      if (vaultSortBy === col) setVaultSortDir(d => d === 'asc' ? 'desc' : 'asc');
+      else {
+        setVaultSortBy(col);
+        setVaultSortDir('desc');
+      }
+    }}
+  >
+    {label}{vaultSortBy === col ? (vaultSortDir === 'desc' ? ' ↓' : ' ↑') : ''}
+  </button>
+);
 
-  const PriorityBadge = ({ p }: { p: string }) => (
-    <span style={{ fontSize: '10px', fontWeight: 700, padding: '2px 6px', borderRadius: '4px', color: '#FFF', background: PRIORITY_COLORS[p] || GRAY }}>{p}</span>
-  );
+const PriorityBadge = ({ p }: { p: string }) => (
+  <span style={{ fontSize: '10px', fontWeight: 700, padding: '2px 6px', borderRadius: '4px', color: '#FFF', background: PRIORITY_COLORS[p] || GRAY }}>
+    {p}
+  </span>
+);
 
   return (
     <div style={s.shell as React.CSSProperties}>
